@@ -1,0 +1,14 @@
+.title {
+  font-size: 26px;
+  font-family: Arial;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cards {
+  width: 850px;
+}
+
+.me-2 {
+  margin-right: 1rem;
+}

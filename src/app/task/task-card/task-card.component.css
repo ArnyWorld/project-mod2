@@ -1,0 +1,14 @@
+.card {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background-color: #cfe2ff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.card-detail {
+  text-align: center;
+  color: #4cabff;
+  font-weight: bold;
+  font-family: Arial;
+}

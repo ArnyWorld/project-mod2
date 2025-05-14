@@ -1,0 +1,22 @@
+.task-filter {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.task-input {
+  padding: 10px;
+  flex-grow: 1;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  font-size: 18px;
+}
+.task-button {
+  background-color: #007bff;
+  color: #f8f9fa;
+  border: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
