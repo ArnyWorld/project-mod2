@@ -7,11 +7,14 @@ import {
   FormsModule,
   ReactiveFormsModule,
   Validators,
+
+
 } from '@angular/forms';
 import { state } from '@angular/animations';
 import { TaskService } from '../../services/task.service';
 import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-task-create',
@@ -20,6 +23,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrl: './task-create.component.css',
 })
 export class TaskCreateComponent implements OnInit {
+  private router = inject(Router);
   private _taskService = inject(TaskService);
   fb = inject(FormBuilder);
 
@@ -62,6 +66,7 @@ export class TaskCreateComponent implements OnInit {
     }
 
     this.taskForm.reset({ state: 'Pendiente' });
+    this.router.navigate(["/task/list"]);
   }
 
   editTask(task: Task) {

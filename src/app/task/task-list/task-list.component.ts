@@ -7,6 +7,7 @@ import { TaskService } from '../../services/task.service';
 import { Observable } from 'rxjs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-task-list',
   imports: [
@@ -15,6 +16,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzTableModule,
     TaskCardComponent,
     NzButtonModule,
+    RouterLink
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
@@ -30,5 +32,12 @@ export class TaskListComponent implements OnInit {
       },
       error: (err) => console.log(err),
     });
+  }
+
+  editTask = (task:Task)=>{
+    this._taskService.updateTask(task);
+  }
+  deleteTask = (id:string)=>{
+    this._taskService.deleteTask(id);
   }
 }

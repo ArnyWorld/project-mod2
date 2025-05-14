@@ -1,9 +1,10 @@
-<div class="cards">
-  <h2 class="title">Lista de tareas</h2>
+<div class="task-box">
+  <div class="task-list">
+    <h2 class="title">Lista de Actividades</h2>
 
-  <!-- <app-task-create [taskList]="tasks" (addTask)="updateList($event)" /> -->
+    <!-- <app-task-create [taskList]="tasks" (addTask)="updateList($event)" /> -->
 
-  <!--  <table class="table table-hover">
+    <!--  <table class="table table-hover">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -31,33 +32,36 @@
       }
     </tbody>
   </table> -->
-  <button nz-button nzType="primary" routerLink="/">Crear Tarea</button>
-  <nz-table #basicTable [nzData]="taskList">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Detalle</th>
-        <th scope="col">Estado</th>
-        <th scope="col" colspan="2">Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(task of taskList; track task.id ){
-      <tr>
-        <th scope="row">1</th>
-        <td>{{ task?.name }}</td>
-        <td>{{ task?.description }}</td>
-        <td>{{ task?.state }}</td>
-        <td>
-          <button nz-button nzType="primary" class="me-2">Editar</button>
-          <button nz-button nzType="primary" nzDanger>Eliminar</button>
-        </td>
-      </tr>
+    <button nz-button nzType="primary" class="mb-1" routerLink="/task/create">
+      Crear Actividad
+    </button>
+    <nz-table #basicTable [nzData]="taskList">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">Estado</th>
+          <th scope="col" colspan="2">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(task of taskList; track task.id ){
+        <tr>
+          <th scope="row">1</th>
+          <td>{{ task?.name }}</td>
+          <td>{{ task?.description }}</td>
+          <td>{{ task?.state }}</td>
+          <td>
+            <button nz-button nzType="primary" (click)="editTask(task)" class="me-2">Editar</button>
+            <button nz-button nzType="primary" (click)="deleteTask(task.id)" nzDanger>Eliminar</button>
+          </td>
+        </tr>
 
-      }@empty {
-      <li>No hay tareas.</li>
-      }
-    </tbody>
-  </nz-table>
+        }@empty {
+        <li>No hay tareas.</li>
+        }
+      </tbody>
+    </nz-table>
+  </div>
 </div>
