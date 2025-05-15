@@ -17,7 +17,7 @@ import { NzMessageComponent, NzMessageService } from 'ng-zorro-antd/message';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
+import { NzModalModule, NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-task-create',
   imports: [
@@ -28,10 +28,11 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzButtonModule,
     NzInputModule,
     NzSelectModule,
+    NzModalModule,
   ],
   templateUrl: './task-create.component.html',
   styleUrl: './task-create.component.css',
-  providers: [NzMessageService],
+  providers: [NzMessageService, NzModalService],
 })
 export class TaskCreateComponent implements OnInit {
   private router = inject(Router);
