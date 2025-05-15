@@ -1,59 +1,26 @@
 # TaskProject
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+El proyecto se desarrolló en angular 19.0.0, para la parte UI se utilizó ng-zorro 19.2.2.
 
-## Development server
+El proyecto realiza las siguientes acciones:
 
-To start a local development server, run:
+- registro de actividades
+- edición de actividades
+- listado de actividades
+- eliminación de actividades
 
-```bash
-ng serve
-```
+### Registro
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+![Registro de actividades](public/create-task.jpg)
 
-## Code scaffolding
+### Listado
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+![Listado de actividades](public/list-task.jpg)
 
-```bash
-ng generate component component-name
-```
+### Edición
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+![Modificación de actividades](public/list-task-edit.jpg)
 
-```bash
-ng generate --help
-```
+### Eliminación
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Eliminación de actividades](public/delete-task.jpg)

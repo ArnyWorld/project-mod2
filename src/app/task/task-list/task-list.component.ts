@@ -8,36 +8,63 @@ import { Observable } from 'rxjs';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { RouterLink } from '@angular/router';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalModule, NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+
 @Component({
   selector: 'app-task-list',
   imports: [
-    TaskCreateComponent,
     CommonModule,
     NzTableModule,
-    TaskCardComponent,
     NzButtonModule,
-    RouterLink
+    RouterLink,
+    NzAlertModule,
+    NzModalModule,
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
+  providers: [NzMessageService, NzModalService],
 })
 export class TaskListComponent implements OnInit {
   private _taskService = inject(TaskService);
+  private message = inject(NzMessageService);
+  private modal = inject(NzModalService);
+  confirmModal?: NzModalRef;
   tasks$!: Observable<Task[]>;
   taskList: Task[] = [];
   ngOnInit(): void {
+    this.getTasks();
+  }
+
+  getTasks = () => {
     this._taskService.tasks$.subscribe({
       next: (data) => {
+        console.log(data);
         this.taskList = data;
       },
       error: (err) => console.log(err),
     });
+  };
+  editTask = (task: Task) => {
+    this._taskService.updateTask(task);
+  };
+  deleteTask = (id: string) => {
+    this._taskService.deleteTask(id);
+    this.createBasicMessage(
+      'success',
+      'Se eliminó la actividad correctamente.'
+    );
+  };
+  createBasicMessage(type: string, message: string): void {
+    this.message.create(type, message);
   }
 
-  editTask = (task:Task)=>{
-    this._taskService.updateTask(task);
-  }
-  deleteTask = (id:string)=>{
-    this._taskService.deleteTask(id);
+  showConfirm(id: any): void {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: '¿Está seguro de eliminar esta actividad?',
+      nzContent: 'Si elimina esta actividad no podrá recuperarlo.',
+      nzOnOk: () => this.deleteTask(id),
+    });
   }
 }

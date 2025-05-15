@@ -4,20 +4,26 @@
   text-align: center;
   margin-bottom: 20px;
 }
-.task-box{
+.task-box {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #9cecfb;
+  background: -webkit-linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
+  background: linear-gradient(to right, #0052d4, #65c7f7, #9cecfb);
 }
 .task-list {
-  width: 850px;
+  width: 1050px;
+  padding: 50px;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .me-2 {
   margin-right: 1rem;
 }
-.mb-1{
+.mb-1 {
   margin-bottom: 10px;
 }

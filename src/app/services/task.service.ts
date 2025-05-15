@@ -1,40 +1,55 @@
+import { Task } from './../interfaces/Task.interface';
 import { Injectable } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
-import { Task } from '../interfaces/Task.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor() {}
-  private tasksSubject = new BehaviorSubject<Task[]>([
-    {
-      id: uuidv4(),
-      name: 'Desarrollar proyecto',
-      description: 'El proyecto debe ser desarrollado en Angular',
-      state: 'Pendiente',
-    },
-  ]);
+  private storageKey = 'tasksMod2';
+  private tasksSubject = new BehaviorSubject<Task[]>([]);
 
-  public tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
+  tasks$ = this.tasksSubject.asObservable();
 
-  get listTasks(): Task[] {
-    return this.tasksSubject.getValue();
+  constructor() {
+    const initialTasks = this.loadTasks();
+    this.tasksSubject.next(initialTasks);
   }
 
-  addTask(task: Task) {
-    this.tasksSubject.next([...this.listTasks, task]);
-  }
+  private loadTasks = (): Task[] => {
+    const data = localStorage.getItem(this.storageKey);
+    return data ? JSON.parse(data) : [];
+  };
 
-  updateTask(updatedTask: Task) {
-    const updatedList = this.listTasks.map((task) =>
-      task.id === updatedTask.id ? updatedTask : task
+  private saveTasks = (tasks: Task[]) => {
+    localStorage.setItem(this.storageKey, JSON.stringify(tasks));
+    this.tasksSubject.next(tasks); // Emitimos las nuevas tareas
+  };
+
+  getTasks = (): Task[] => {
+    return this.tasksSubject.value;
+  };
+
+  getTaskById = (id: string): Task | undefined => {
+    return this.tasksSubject.value.find((task) => task.id === id);
+  };
+
+  addTask = (task: Task) => {
+    const current = this.tasksSubject.value;
+    this.saveTasks([...current, task]);
+  };
+
+  updateTask = (updated: Task) => {
+    const updatedList = this.tasksSubject.value.map((task) =>
+      task.id === updated.id ? updated : task
     );
-    this.tasksSubject.next(updatedList);
-  }
+    this.saveTasks(updatedList);
+  };
 
-  deleteTask(id: string) {
-    const filtered = this.listTasks.filter((task) => task.id !== id);
-    this.tasksSubject.next(filtered);
-  }
+  deleteTask = (id: string) => {
+    const updatedList = this.tasksSubject.value.filter(
+      (task) => task.id !== id
+    );
+    this.saveTasks(updatedList);
+  };
 }

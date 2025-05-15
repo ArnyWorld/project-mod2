@@ -1,25 +1,53 @@
 <div class="form-box">
   <form class="task-filter" [formGroup]="taskForm">
-    <h2 class="task-title">Crear Actividad</h2>
+    <small>Campos obligatorios (*)</small>
+    <h2 class="task-title">{{ action }} Actividad</h2>
     <div class="form-group">
-      <label for="name" class="form-label">Título</label>
-      <input type="text" id="name" class="task-input" formControlName="name" />
+      <label for="name" class="form-label">Título (*)</label>
+      <!-- <input type="text" id="name" class="task-input" formControlName="name" /> -->
+      <input nz-input formControlName="name" id="name" type="text" />
     </div>
     <div class="form-group">
-      <label for="description" class="form-label">Descripción</label>
-      <textarea name="description" formControlName="description" id="description"></textarea>
+      <label for="description" class="form-label">Descripción (*)</label>
+      <textarea
+        nz-input
+        [nzAutosize]="{ minRows: 3, maxRows: 5 }"
+        name="description"
+        formControlName="description"
+        id="description"
+      ></textarea>
+      <!-- <textarea
+        name="description"
+        formControlName="description"
+        id="description"
+      ></textarea> -->
     </div>
-    <div class="form-group">
-      <label for="state" class="form-label">Estado</label>
-      <select class="task-state" id="state" formControlName="state">
+    <div class="form-group mb-3">
+      <label for="state" class="form-label">Estado (*)</label>
+      <nz-select formControlName="state" id="state">
+        <nz-option nzValue="Pendiente" nzLabel="Pendiente"></nz-option>
+        <nz-option nzValue="En Proceso" nzLabel="En Proceso"></nz-option>
+        <nz-option nzValue="Completado" nzLabel="Completado"></nz-option>
+      </nz-select>
+      <!-- <select class="task-state" id="state" formControlName="state">
         <option value="Pendiente">Pendiente</option>
         <option value="En Proceso">En Proceso</option>
         <option value="Completado">Completado</option>
-      </select>
+      </select> -->
     </div>
-    <button class="task-button" (click)="addTask()">
-      {{ editingTaskId ? "Actualizar" : "Agregar" }}
+    <!-- <button class="task-button" (click)="addTask()">
+      {{ taskId ? "Actualizar" : "Agregar" }}
+    </button> -->
+    <button nz-button class="mb-2" nzType="primary" (click)="addTask()">
+      {{ taskId ? "Actualizar" : "Agregar" }}
+    </button>
+    <button
+      class="task-cancel"
+      nz-button
+      nzType="primary"
+      routerLink="/task/list"
+    >
+      Cancelar
     </button>
   </form>
-
 </div>
