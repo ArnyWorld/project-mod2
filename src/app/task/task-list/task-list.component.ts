@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalModule, NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-
+import { NzTagModule } from 'ng-zorro-antd/tag';
 @Component({
   selector: 'app-task-list',
   imports: [
@@ -21,6 +21,7 @@ import { NzModalModule, NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
     RouterLink,
     NzAlertModule,
     NzModalModule,
+    NzTagModule,
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',

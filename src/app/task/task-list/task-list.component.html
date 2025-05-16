@@ -24,7 +24,16 @@
           <td>{{ task?.name }}</td>
           <td>{{ task?.description }}</td>
           <td>
-            {{ task?.state }}
+            <nz-tag
+              [nzColor]="
+                task?.state == 'Pendiente'
+                  ? '#f50'
+                  : task?.state == 'En Proceso'
+                  ? '#2db7f5'
+                  : '#87d068'
+              "
+              >{{ task?.state }}</nz-tag
+            >
           </td>
           <td>
             <button
